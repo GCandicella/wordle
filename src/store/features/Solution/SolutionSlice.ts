@@ -18,8 +18,9 @@ const initialState: SolutionState = {
 export const fetchWord = createAsyncThunk<string, void>(
     'wordle/fetchWord',
     async () => {
-        const response = await fetch('https://api.frontendexpert.io/api/fe/wordle-words');
-        const words: string[] = await response.json();
+        //const response = await fetch('https://api.frontendexpert.io/api/fe/wordle-words');
+        //const words: string[] = await response.json();
+        const words = ['Hello', 'World', 'Money'];
 
         // Select a random word from the array
         return words[Math.floor(Math.random() * words.length)];
