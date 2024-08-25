@@ -9,7 +9,7 @@ export interface GuessesState {
 }
 
 const initialState: GuessesState = {
-    guesses: [],
+    guesses: Array(6).fill(null),
     currentGuess: 0,
     isGameOver: false,
     isGameWon: false,
