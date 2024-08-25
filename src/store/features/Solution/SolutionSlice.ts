@@ -15,8 +15,8 @@ const initialState: SolutionState = {
 };
 
 // Async Action Creator using createAsyncThunk
-export const fetchWord = createAsyncThunk<string, void>(
-    'wordle/fetchWord',
+export const fetchWord = createAsyncThunk<string>(
+    'solution/fetchWord',
     async () => {
         //const response = await fetch('https://api.frontendexpert.io/api/fe/wordle-words');
         //const words: string[] = await response.json();
