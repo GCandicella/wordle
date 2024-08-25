@@ -4,10 +4,12 @@ import {AppDispatch, RootState} from "@/store/store";
 import Guess from "@/components/Guess/Guess";
 import {fetchWordThunk} from "@/store/features/Solution/SolutionSlice";
 import {useEffect} from "react";
+import {inspect} from "util";
+import styles from "./Board.module.scss"
 
-export default function Board(){
+export default function Board() {
     const dispatch = useDispatch<AppDispatch>();
-    const { word, error, status } = useSelector((state: RootState) => state.solution);
+    const {word, error, status} = useSelector((state: RootState) => state.solution);
     const guesses = useSelector((state: RootState) => state.guesses.guesses)
 
     useEffect(() => {
@@ -23,11 +25,13 @@ export default function Board(){
     }
 
     return (
-        <div>
+        <div className={styles.board}>
             Welcome to the board - random word: {word}
-            {guesses.map((guess, key) => {
-                return <div key={key}><Guess guess={guess}/></div>
-            })}
+            <div className={styles.guessWrapper}>
+                {guesses.map((guess, key) => {
+                    return <div key={key}><Guess guess={guess} length={word.length}/></div>
+                })}
+            </div>
         </div>
     )
 }

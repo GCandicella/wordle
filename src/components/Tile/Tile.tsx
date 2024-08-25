@@ -1,9 +1,11 @@
 'use client'
 
+import styles from "./Tile.module.scss"
+
 export default function Tile(){
     return (
-        <div>
-            Tile
+        <div className={styles.tile}>
+
         </div>
     )
 }
