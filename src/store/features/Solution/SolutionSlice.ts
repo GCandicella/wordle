@@ -23,7 +23,7 @@ export const fetchWord = createAsyncThunk<string>(
         const words = ['Hello', 'World', 'Money'];
 
         // Select a random word from the array
-        return words[Math.floor(Math.random() * words.length)];
+        return words[Math.floor(Math.random() * words.length)].toUpperCase();
     }
 );
 

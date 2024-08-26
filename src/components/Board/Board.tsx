@@ -19,8 +19,8 @@ export default function Board() {
 
     useEffect(() => {
         const handleKeyDown = (event) => {
-            console.log(event.key.toLowerCase())
-            dispatch(registerTile(event.key.toLowerCase()));
+            console.log(event.key.toUpperCase())
+            dispatch(registerTile(event.key.toUpperCase()));
         };
 
         window.addEventListener('keydown', handleKeyDown);
@@ -47,7 +47,7 @@ export default function Board() {
                 {JSON.stringify(guesses)}
                 {guesses.map((guess, key) => {
                     return <div key={key}>
-                        <Guess guess={guess} currentGuess={currentGuess} solution={word}/>
+                        <Guess guess={guess} verify={currentGuess > key} solution={word}/>
                     </div>
                 })}
             </div>

@@ -24,10 +24,10 @@ export const guessesSlice = createSlice({
         registerTile: (state: GuessesState, action) => {
             const input = action.payload
             switch (input) {
-                case 'backspace':
+                case 'BACKSPACE':
                     state.guesses[state.currentGuess].pop()
                     break;
-                case 'enter':
+                case 'ENTER':
                     if (state.guesses[state.currentGuess].length === 5) {
                         state.currentGuess += 1
                     }else {

@@ -3,6 +3,10 @@
   height: 50px;
   color: #FFFFFF;
   background-color: #333333;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
   &.correct{
     background-color: darkolivegreen;
   }
