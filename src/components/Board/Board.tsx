@@ -11,7 +11,7 @@ import {registerTile, registerTileBackspace} from "@/store/features/Guesses/Gues
 export default function Board() {
     const dispatch = useDispatch<AppDispatch>();
     const {word, error, status} = useSelector((state: RootState) => state.solution);
-    const {guesses, errorMessage } = useSelector((state: RootState) => state.guesses)
+    const {guesses, errorMessage, currentGuess} = useSelector((state: RootState) => state.guesses)
 
     useEffect(() => {
         dispatch(fetchWordThunk());
@@ -46,7 +46,9 @@ export default function Board() {
             <div className={styles.guessWrapper}>
                 {JSON.stringify(guesses)}
                 {guesses.map((guess, key) => {
-                    return <div key={key}><Guess guess={guess} length={word.length}/></div>
+                    return <div key={key}>
+                        <Guess guess={guess} currentGuess={currentGuess} solution={word}/>
+                    </div>
                 })}
             </div>
         </div>
