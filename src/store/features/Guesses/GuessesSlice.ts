@@ -16,21 +16,42 @@ const initialState: GuessesState = {
     errorMessage: null,
 }
 
+const checkGameStatus = (state: GuessesState, solution: string) => {
+    let total = 0
+    state.guesses.map((guess, index) => {
+        if (guess.join('') === solution) {
+            state.isGameWon = true
+            state.isGameOver = true
+            return false; // game over
+        }else {
+            total += guess.length
+        }
+    })
+    if(total === state.guesses.length * 5){
+        state.isGameOver = true
+        return false; // game over
+    }
+    return true;
+}
+
 export const guessesSlice = createSlice({
     // Define state, actions, and reducers here
     name: 'guesses',
     initialState,
     reducers: {
         registerTile: (state: GuessesState, action) => {
-            const input = action.payload
+            const input = action.payload.key
+            console.log(action)
             switch (input) {
                 case 'BACKSPACE':
                     state.guesses[state.currentGuess].pop()
                     break;
                 case 'ENTER':
                     if (state.guesses[state.currentGuess].length === 5) {
-                        state.currentGuess += 1
-                    }else {
+                        if (checkGameStatus(state, action.payload.solution)) {
+                            state.currentGuess += 1
+                        }
+                    } else {
                         state.errorMessage = 'Each guess must be 5 characters long.'
                     }
                     break;
